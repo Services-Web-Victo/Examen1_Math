@@ -1,0 +1,91 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Examen 01
+  description: API de gestion d'une liste de sorts du jeu Donjons et Dragons. Réalisé dans le cadre du cours Services Web au Cégep de Victoriaville.
+  
+servers: 
+  - url: http://sw_exam1.loc
+paths:
+  /:
+    get:
+      tags:
+        - Général
+      summary: Message de bienvenue
+      responses:
+        '200': 
+          description: Un petit message de bienvenue
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                example:
+                    message : "Services Web H2023 - Examen 01 - Maintenant c'est du sérieux"
+  
+  /ecoles:
+    get:
+      tags:
+        - École
+      summary: Affiche la liste de toutes les écoles de magie.
+
+      responses:
+        '200': 
+          description: Un tableau de toutes les écoles
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+                example: [Abjuration,Conjuration,Divination,Enchantment,Evocation,Illusion,Necromancy,Transmutation]
+
+  /sorts/{classe}:
+    get:
+      tags:
+        - Sorts
+      summary: Affiche la liste des sorts d'un niveau d'une classe 
+      parameters:
+        - name: classe
+          in: path
+          required: true
+          description: La classe du personnage
+          schema:
+            type: string
+            example: bard
+        - name:  niveau
+          in: query
+          required: false
+          description: Le niveau des sorts à afficher. La valeur doit être comprise entre 0 et 9. Si la valeur est invalide ou non spécifiée, tous les niveaux seront affichés.
+          schema:
+            type: integer
+            example: '0'
+
+      responses:
+        '200': 
+          description: La liste des sorts selon les paramètres donnés
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  sorts:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          format: int64
+                          example: 48
+                        name:
+                          type: string
+                          example: Vicious Mockery
+                  classe:
+                    type: string
+                    example: bard
+                  niveau:
+                    type: integer
+                    example: 0

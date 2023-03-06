@@ -1,0 +1,14 @@
+{
+    "name": "Aspersion d'acide",
+    "classes": "Ensorceleur, Magicien",
+    "level": 0,
+    "school": "Invocation",
+    "cast_time": "1 Action",
+    "range": "18 mètres",
+    "duration": "Instantaneous",
+    "verbal": 1,
+    "somatic": 1,
+    "material": 0,
+    "material_cost": "",
+    "description": "Vous lancez une bulle d'acide qui fait vraiment trop mal"
+}
